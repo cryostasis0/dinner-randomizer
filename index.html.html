@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>whats for dinner?</title>
+  <style>
+    body {
+      font-family:'Lucida Console', Monaco, monospace;
+      background:linear-gradient(135deg, #e29999, #edc6ad);
+      text-align: center;
+      margin: 0;
+      padding: 40px;
+     }
+    button {
+      padding: 12px 24px;
+      font-size: 18px;
+      cursor: pointer;
+      border-radius: 6px;
+      border: 2px solid #00b3ff;
+      background: #9070ba;
+      color: rgb(30, 255, 75);
+      box-shadow: 0 0 8px #fa0000;
+    }
+    button:hover {
+      background: #a483c2;
+      color:#66ff99;
+    }
+    #result {
+      margin-top: 20px;
+      font-size: 24px;
+      font-weight: bold;
+    }
+    #foodPic {
+     margin-top: 20px;
+     image-rendering: pixelated;
+     border: 4px solid #000;
+     box-shadow:
+    0 0 0 4px #fff,
+    0 0 0 8px #000;
+}
+    .decor{
+      position: absolute;
+      width: 80px;
+      image-rendering: pixelated;
+    }
+    .left{
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    .right{
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    .top{
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .bottom{
+      bottom: 20px;
+      right: 50%;
+      transform: translateX(-50%);
+    }
+    #resultWrapper{
+      display:flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      margin-top: 20px;
+    }
+    #flagPic{
+      width: 50px;
+      height: auto;
+      image-rendering:pixelated;
+    }
+  </style>
+</head>
+<body>
+  <h1>dinner randomizer</h1>
+  <h2>what's for dinner? let's find out!</h2>
+
+  <!-- the button -->
+  <button onclick="randomize()">what’s for dinner?</button>
+   <div id ="result"></div>
+<div id="decorations">
+ <img src="pixel-star.png" class="decor left" style="cursor: move; position: absolute; left: 102px; top: 220.193px;">
+ <img src="pixel-bear.png" class="decor right" style="cursor: move; position: absolute; left: 1142.67px; top: 447.667px;">
+ <img src="pixel-computer.png" class="decor right" style="cursor: move; position: absolute; left: 1117.67px; top: 141.667px;">
+ <img src="pixel-raspberry.png" class="decor bottom" style="cursor: move; position: absolute; left: 1059.32px; top: 262.323px;">
+ <img src="pixel-soda.png" class="decor bottom left" style="cursor: move; position: absolute; left: 87px; top: 352.667px;">
+ <img src="pixel-sparkles.png" class="decor top left" style="cursor: move; position: absolute; left: 54.3334px; top: 13px;">
+ <img src="pixel-sushi.png" class="decor bottom right" style="cursor: move; position: absolute; left: 302.323px; top: 14.6667px;">
+ <img src="pixel-webarebears.png" class="decor top right" style="cursor: move; position: absolute; left: 973.323px; top: 33px;">
+</div>
+
+<div id="resultWrapper">
+  <div id="result"></div>
+  <img id="flagPic" src="" alt="flag pic">
+</div>
+ 
+<img id="foodPic" src="" alt="food pic" width="300">
+
+  <script>
+
+    function randomize() {
+  const chosenDinner = dinner[Math.floor(Math.random() * dinner.length)];
+  document.getElementById("result").innerText = 
+  "mom and dad said we're having " + chosenDinner.name;
+document.getElementById("foodPic").src=chosenDinner.img;
+document.getElementById("flagPic").src=chosenDinner.flag;
+
+const roll = Math.floor(Math.random() * 1000) + 1;
+
+if (roll === 1) {
+    console.log("KARTOFFELSALAT???");
+    document.getElementById("result").innerText = "KARTOFFELSALAT???";
+    document.getElementById("foodPic").src ="https://www.coop.ch/img/produkte/1200_630/RGB/4119474_001.jpg?_=1627910858398"
+} else if (roll === 2) {
+    console.log("no dinner tonight, starve.");
+    document.getElementById("result").innerText = "no dinner tonight, starve.";
+    document.getElementById("foodPic").src ="https://i.imgflip.com/9v4cbv.jpg?a488352"
+}
+}
+
+console.log("mama papa what's for dinner tonight");
+console.log("they don't know either");
+console.log("let's help them decide what's for dinner");
+
+const dinner = [
+  {name:"pierogi",img:"https://images.squarespace-cdn.com/content/v1/669580a01b30b44e60db006c/f114b5e0-c33c-49bd-9287-529844769096/potato_cheese_onion_pierogi.jpg",flag:"poland.png"},
+  {name:"shawarma",img:"https://cookingorgeous.com/wp-content/uploads/2024/01/easy-homemade-lebanese-chicken-shawarma-20.jpg",flag:"lebanon.png"},
+  {name:"thai red curry",img:"https://hot-thai-kitchen.com/wp-content/uploads/2015/05/red-curry-kabocha-sq-cu.jpg",flag:"thailand.png"},
+  {name:"fettuccine al burro",img:"https://popmenucloud.com/cdn-cgi/image/width=1920,height=1920,format=auto,fit=scale-down/jviarzdy/9f7ded08-b859-4303-b187-bf05dc7a9b6a.jpg",flag:"italy.png"},
+  {name:"uzbek manti",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Uzbek_Manti_%28bright%29.jpg/2560px-Uzbek_Manti_%28bright%29.jpg",flag:"uzbekistan.png"},
+  {name:"ropa vieja",img:"https://www.seriouseats.com/thmb/cA5AKJHUuiDLg994DSmpxvLtvno=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__recipes__images__2017__11__20171108-ropa-vieja-vicky-wasik-23-fe8b979b88f64ad0b01077ea71d15153.jpg",flag:"cuba.png"},
+  {name:"biryani",img:"https://www.spiceandcolour.com/wp-content/uploads/2020/06/receta-presentacion-biryani-de-pollo-01.jpg",flag:"india.png"},
+  {name:"karelian kalitki",img:"https://static.tildacdn.com/tild3935-3833-4162-b437-626466363538/karelskie-kalitki-re.jpg",flag:"russia.png",},
+  {name:"pozole",img:"https://hips.hearstapps.com/hmg-prod/images/pozole-index-655b86b9eeb3f.jpg?crop=0.502xw:1.00xh;0.0561xw,0&resize=1200:*",flag:"mexico.png"},
+  {name:"kimchi fried rice",img:"https://takestwoeggs.com/wp-content/uploads/2022/03/Kimchi-Fried-Rice-Kimchi-bokkeumbap-takestwoeggs-final-photography-sq.jpg",flag:"south_korea.png"},
+  {name:"hawawshi",img:"https://www.themediterraneandish.com/wp-content/uploads/2020/11/hawawshi-recipe-6.jpg",flag:"egypt.png"},
+  {name:"samosa",img:"https://www.cubesnjuliennes.com/wp-content/uploads/2020/08/Crispy-Indian-Samosa-Recipe.jpg",flag:"india.png"},
+  {name:"jollof rice",img:"https://kikifoodies.com/wp-content/uploads/2025/03/ET5B8958-4.jpeg",flag:"nigeria.png"},
+  {name:"chicken kyiv",img:"https://cravinghomecooked.com/wp-content/uploads/2025/05/chicken-kiev-1-19.jpg",flag:"ukraine.png"},
+  {name:"pho",img:"https://www.recipetineats.com/tachyon/2019/04/Beef-Pho_6.jpg?resize=500%2C500",flag:"vietnam.png"},
+  {name:"australian meat pie",img:"https://jesspryles.com/wp-content/uploads/2021/01/meat-pies-70-scaled.jpg",flag:"australia.png"},
+  {name:"paella",img:"https://www.frontiercoop.com/media/wysiwyg/tmp/frontier-recipe-spanish-paella-with-saffron-and-smoked-paprika-900x900.jpg",flag:"spain.png"},
+  {name:"poutine",img:"https://www.simplotfoods.com/_next/image?url=https%3A%2F%2Fimages.ctfassets.net%2F0dkgxhks0leg%2F2yeqWukA2traRMH2S3xIYS%2F909fa789452349e328dcd255d6773586%2Floaded_20poutine_20fries_046.jpg%3Ffm%3Dwebp&w=3840&q=75",flag:"canada.png"},
+  {name:"feijoada",img:"https://www.allrecipes.com/thmb/lhtJ53Y3cnwpLRSucDpN1yfR8xE=/0x512/filters:no_upscale():max_bytes(150000):strip_icc()/AR-139208-Feijoada-DDMFS-4x3-74a3fbca83d947f9b6f330ef01999c89.jpg",flag:"brazil.png"},
+  {name:"nasi goreng",img:"https://mim.p7s1.io/pis/ld/8d87zChLCVyZ-c1vEwXZAanB-DJ78rnq2V2gRWTHzVV6NywNWMSJCEGmZ4YSENP-WRL0b9lo2zmFQhLTfpJ6SisNvG6rCS9U79ldNqJEPPcKZRwzZ4kCvr7-ZgbpekgNNnQ4KqsSuxo/profile:original?w=1200&rect=896%2C0%2C3584%2C3584",flag:"indonesia.png"},
+  {name:"älplermagronen",img:"https://www.v-kitchen.ch/recipe/18e885d3-825d-41df-977e-c61fded66038.jpg?d=1408x1120",flag:"switzerland.png"},
+  {name:"plov",img:"https://greedy-panda.com/wp-content/uploads/2023/09/Ubbek-Plov-1600x1067.jpg.webp",flag:"uzbekistan.png"},
+  {name:"greek salad",img:"https://hips.hearstapps.com/hmg-prod/images/greek-salad-index-642f292397bbf.jpg?crop=0.888888888888889xw:1xh;center,top&resize=1200:*",flag:"greece.png"},
+  {name:"draniki",img:"https://img.iamcook.ru/2022/upl/recipes/cat/u-34c704003c2f2cdcae1c73ac1fae17f7.JPG",flag:"belarus.png"},
+  {name:"käsespätzle",img:"https://assets.ichkoche.at/image/17/166155.jpg?v=6&twic=v1/focus=50px50p/cover=496x384",flag:"germany.png"},
+  {name:"maqluba",img:"https://falasteenifoodie.com/wp-content/uploads/2023/01/DSC00046-500x500.jpg",flag:"palestine.png"},
+  {name:"lohikeitto",img:"https://jernejkitchen.com/sites/default/files/finska-lososa-juha-04-jernejkitchen.jpg",flag:"finland.png"},
+  {name:"echpochmak",img:"https://tatarstan.eu/wp-content/uploads/2022/09/Echpochmak-logo.jpg",flag:"russia.png"},
+  {name:"pad thai",img:"https://www.eatingwell.com/thmb/X8n8s2xKfmMf9qUJj1WtCatbacc=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/EWL-shrimp-pad-thai-step-05-1190-87e6eec4f9ec48f288489d7f06ea01fc.jpg",flag:"thailand.png"},
+  {name:"alaskan crab",img:"https://www.alaskaseafood.org/wp-content/uploads/228_1600x920.jpg",flag:"united_states.png"},
+  {name:"tagine",img:"https://middlebury.coop/wp-content/uploads/2023/01/Chicken-Tagine.-SS.-Low-Res-476x476.jpg",flag:"morocco.png"},
+  {name:"laksa",img:"https://www.recipetineats.com/tachyon/2016/09/Laksa.jpg",flag:"indonesia.png"},
+  {name:"bobotie",img:"https://www.panningtheglobe.com/wp-content/uploads/2013/02/bobotie-8.jpg",flag:"south_africa.png"},
+  {name:"empanadas",img:"https://simplyfreshfoodie.com/wp-content/uploads/2024/12/vegetarian-empanadas.jpg",flag:"argentina.png"},
+  {name:"adobo",img:"https://unboundwellness.com/wp-content/uploads/2019/05/filipino_adobo_1.jpg",flag:"philippines.png"},
+  {name:"chicken yassa",img:"https://www.simplyrecipes.com/thmb/82a9tCHi-WLM5_b1GsMCSf2QoRw=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Simply-Recipes-Chicken-Yassa-LEAD-08-7acd905640ca4a42b823620c57379a13.jpg",flag:"senegal.png"},
+  {name:"kadhi",img:"https://www.secondrecipe.com/wp-content/uploads/2020/07/dahi-kadhi-recipe.jpg",flag:"india.png"},
+  {name:"beshbarmak",img:"https://images.gastronom.ru/kLIbH6FHdLHWLHVq-XyDX_M7VSPXnejKFu08qOgQ_7w/pr:recipe-cover-image/g:ce/rs:auto:0:0:0/L2Ntcy9hbGwtaW1hZ2VzLzc5ODBmYWViLTU1YTMtNGZlNC1iYTQ4LTI1OTU3Njg1N2ZkZC5qcGc.webp",flag:"kazakhstan.png"},
+  {name:"khachapuri",img:"https://www.onceuponachef.com/images/2024/09/Khachapuri-Hero-8-500x500.jpg",flag:"georgia.png"},
+  {name:"lentil daal",img:"https://veganhuggs.com/wp-content/uploads/2020/09/red-lentil-dahl-square-crop-a.jpg",flag:"india.png"},
+  {name:"balkarian khychin,",img:"https://i.obozrevatel.com/food/recipemain/2020/1/10/oblozhka.jpg",flag:"russia.png"},
+  {name:"korean seafood congee",img:"https://www.seoulmills.com/cdn/shop/files/64d40b252a48a.jpg?v=1692388760",flag:"south_korea.png"},
+  {name:"börek",img:"https://bistrobadia.de/wp-content/uploads/2025/03/boerek-mit-spinat-21-1024x576.jpg",flag:"turkey.png"}
+];
+
+</script>
